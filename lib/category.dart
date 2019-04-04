@@ -32,15 +32,16 @@ class _CategoryListState extends State<CategoryList> {
     fetch();
   }
 
-  void fetch() async {
+  fetch() async {
     future =  rootBundle.loadString('assets/data/categories.json');
     result = await future;
     categories =   categoryFromJson(result);
+    return categories ;
   }
 
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: future,
+      future: fetch(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
